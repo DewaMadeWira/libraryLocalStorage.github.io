@@ -19,12 +19,10 @@ function randomId() {
 function uploadBook() {
   let book = storeBook();
   if (localStorage.getItem(libraryKey) == null) {
-   
     bookArray.unshift(book);
     localStorage.setItem(libraryKey, JSON.stringify(bookArray));
     renderData();
   } else if (localStorage.getItem(libraryKey) != null) {
-   
     bookArray = getBook();
     bookArray.unshift(book);
     localStorage.setItem(libraryKey, JSON.stringify(bookArray));
