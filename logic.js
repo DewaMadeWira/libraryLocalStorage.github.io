@@ -3,12 +3,6 @@ const addBook = document.getElementById("addBook");
 addBook.addEventListener("click", uploadBook);
 
 let bookArray = [];
-const myObj = {
-  name: "John",
-  author: "Doe",
-  year: "1341",
-  isComplete: false,
-};
 function storeBook() {
   return {
     id: randomId(),
@@ -17,13 +11,7 @@ function storeBook() {
     year: document.getElementById("year").value,
     isComplete: false,
   };
-  // return {
-  //   id: randomId(),
-  //   title: "isal",
-  //   author: myObj.author,
-  //   year: myObj.year,
-  //   isComplete: false,
-  // };
+
 }
 function randomId() {
   return (id = "id" + Math.random().toString(16).slice(2));
@@ -31,12 +19,12 @@ function randomId() {
 function uploadBook() {
   let book = storeBook();
   if (localStorage.getItem(libraryKey) == null) {
-    alert("Is Empty !");
+   
     bookArray.unshift(book);
     localStorage.setItem(libraryKey, JSON.stringify(bookArray));
     renderData();
   } else if (localStorage.getItem(libraryKey) != null) {
-    alert("Something in there !");
+   
     bookArray = getBook();
     bookArray.unshift(book);
     localStorage.setItem(libraryKey, JSON.stringify(bookArray));
@@ -68,15 +56,6 @@ function renderData() {
         <button id="${book.id}" class="restoreButton" >Finish</button>
       </div>
     </div>`;
-      //   const button = document.createElement("button");
-      //   const buttonChange = document.createElement("button");
-      //   li.innerText = book.title;
-      //   button.id = book.id;
-      //   button.innerText = "Delete";
-      // let button = document.getElementById(book.id);
-      // button.addEventListener("click", () => deleteBook(button.id));
-      // let buttonChange = document.getElementById(book.id + "C");
-      // buttonChange.addEventListener("click", () => changeStats(book.id));
       list.innerHTML += newList;
     } else if (book.isComplete == true) {
       let newList = ` <div
@@ -91,20 +70,9 @@ function renderData() {
 
       <div class="flex flex-col items-center w-1/4">
       <button id="${book.id}" class="mb-5 deleteButton">Delete</button>
-      <button id="${book.id}" class="restoreButton" >Finish</button>
+      <button id="${book.id}" class="restoreButton" >Restore</button>
       </div>
     </div>`;
-      //   button.id = book.id;
-      //   button.innerText = "Delete";
-      //   buttonChange.id = book.id;
-      //   buttonChange.innerText = "Change";
-      //   button.addEventListener("click", () => deleteBook(button.id));
-      //   buttonChange.addEventListener("click", () =>
-      //     changeStats(buttonChange.id)
-      //   );
-      //   listFinished.appendChild(li);
-      //   li.appendChild(button);
-      //   li.appendChild(buttonChange);
       listFinished.innerHTML += newList;
     }
   }
@@ -131,6 +99,7 @@ function removeAllChildNodes(parent) {
   }
 }
 function deleteBook(id) {
+  alert("Book deleted");
   let obj = getBook();
   let i = 0;
   for (let book of obj) {
@@ -143,7 +112,7 @@ function deleteBook(id) {
   }
 }
 function changeStats(id) {
-  alert("clicked");
+  alert("Book changed");
   let obj = getBook();
   let i = 0;
   for (let book of obj) {
